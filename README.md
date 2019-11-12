@@ -1,14 +1,17 @@
-# Deploy Models into ESP
+# Deploy Models in ESP
 
-The aim of this project is to deploy Yolov2 Model and provide API interface to interact.
+The aim of this project is to deploy Deep Neural Network Model and serve it using API.
 
-#Setup Environment
+# Setup Environment
+
+1. Install SAS ESP
+2. Setup python and install this application using the following script
+
 ```
 sudo bash install.sh
 ```
 
-#Start ESP
+# Deploy and Start ESP
 ```
-conda activate iotdemo
 bash deploy.sh -a 30003 -p 30004 -m astore/resnet50_caffe.astore -s astore/schema.txt -d
 ```
