@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # Download the Linux Anaconda Distribution
-wget https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O ~/anaconda3.sh
+#Use curl
+curl -o ~/anaconda3.sh https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh
+#wget https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O ~/anaconda3.sh
 
 # Run the installer
 bash ~/anaconda3.sh -b -p $HOME/anaconda3
