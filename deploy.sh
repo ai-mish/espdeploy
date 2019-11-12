@@ -22,7 +22,7 @@ export SASTK=$SASHOME/home/SASFoundation/sasexe
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DFESP_HOME/lib:${SASTK}:$DFESP_HOME/ssl/lib
 export TKPATH=$DFESP_HOME/lib/tk.940m3
 
-
+export DFESP_SA_YAML=$DFESP_HOME/etc/sa_windows/sa_windows.yml
 export PATH=$PATH:$DFESP_HOME/bin
 export DFESP_SSLPATH=$DFESP_HOME/ssl/lib
 export DFESP_JAVA_TRUSTSTORE=$SASHOME/config/etc/SASSecurityCertificateFramework/cacerts/trustedcerts.jks
