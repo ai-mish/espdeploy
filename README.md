@@ -5,11 +5,18 @@ The aim of this project is to deploy Deep Neural Network Model and serve it usin
 # Setup Environment
 
 1. Install SAS ESP
-2. Setup python and install this application using the following script
 
-```
-sudo bash install.sh
-```
+2. Update image size as required by Model in server.py
+
+  ```
+  resize = esp.calculate.ImageProcessing(schema=('id*:int64', '_image_:blob'), function="resize", width=224, height=224)
+  ```
+
+3. Setup python and install this application using the following script
+
+  ```
+  sudo bash install.sh
+  ```
 
 # Deploy and Start ESP
 ```
