@@ -2,7 +2,7 @@
 
 The aim of this project is to deploy Deep Neural Network Model and serve it using API.
 
-# Setup Environment
+## Setup Environment
 
 1. Install SAS ESP
 
@@ -21,10 +21,10 @@ The aim of this project is to deploy Deep Neural Network Model and serve it usin
 4. Schema for model in repository is already created. Create new Schema file for new model using the following tool.
 
   ```
-  bash util/read_astore_schema astore/new_model.astore
+  bash util/read_astore_schema astore/new_model.astore > new_schema.txt
   ```
-  
-# Deploy and Start ESP
+
+## Deploy and Start ESP
 ```
 bash deploy.sh -a 30003 -p 30004 -m astore/resnet50_caffe.astore -s astore/schema.txt -d
 ```
