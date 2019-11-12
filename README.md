@@ -13,7 +13,7 @@ The aim of this project is to deploy Deep Neural Network Model and serve it usin
   sudo chown $USER /app
   cd /app
   git clone https://github.com/sukmmi/espdeploy.git
-  bash install.sh
+  bash espdeploy/install.sh
   ```
 3. Update image size as required by Model in server.py
 
