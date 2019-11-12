@@ -13,17 +13,14 @@ bash ~/anaconda3.sh -b -p $HOME/anaconda3
 ### Run the conda init script to setup the shell
 echo ". $HOME/anaconda3/etc/profile.d/conda.sh" >> $HOME/.bashrc
 . $HOME/anaconda3/etc/profile.d/conda.sh
-source $HOME/.bashrc
 
-# Create a base Python3 environment separate from the base env
-#conda create -y --name python3
 
-# Install necessary Python packages
-#conda activate python3
 cd /app
 #delete if exist
 rm -rf python-esppy
 git clone https://github.com/sassoftware/python-esppy.git
+
+# Install necessary Python packages
 conda env create --file espdeploy/conda/conda.yaml
 
 #conda env create --file conda2.yaml

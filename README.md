@@ -24,7 +24,7 @@ The aim of this project is to deploy Deep Neural Network Model and serve it usin
 4. (Optional - only if you are using new model)Schema for model in repository is already created. Create new Schema file for new model using the following tool.
 
   ```
-  bash util/read_astore_schema astore/new_model.astore > new_schema.txt
+  bash espdeploy/util/read_astore_schema.sh espdeploy/astore/new_model.astore > new_schema.txt
   ```
 
 ## Deploy and Start ESP
@@ -37,5 +37,6 @@ The aim of this project is to deploy Deep Neural Network Model and serve it usin
 
 ## Score
  ```
+ cd espdeploy/score
  python score_img_classification.py -i img.jpg
  ```
