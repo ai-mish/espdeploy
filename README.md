@@ -9,7 +9,10 @@ The aim of this project is to deploy Deep Neural Network Model and serve it usin
 2. Setup python and install this application using the following script
 
   ```
-  #yum install -y wget
+  #Ensure curl exist
+  sudo mkdir /app
+  sudo chown $USER /app
+  git clone https://github.com/sukmmi/espdeploy.git
   sudo bash install.sh
   ```
 3. Update image size as required by Model in server.py
@@ -27,6 +30,7 @@ The aim of this project is to deploy Deep Neural Network Model and serve it usin
 ## Deploy and Start ESP
 
   ```
+  cd espdeploy
   bash deploy.sh -a 30003 -p 30004 -m astore/resnet50_caffe.astore -s astore/schema.txt -d
   ```
 

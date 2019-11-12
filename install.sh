@@ -18,11 +18,8 @@ source $HOME/.bashrc
 
 # Install necessary Python packages
 #conda activate python3
-sudo mkdir /app
-sudo chown $USER /app
 cd /app
 git clone https://github.com/sassoftware/python-esppy.git
-git clone https://github.com/sukmmi/espdeploy.git
 conda env create --file espdeploy/conda/conda.yaml
 
 #conda env create --file conda2.yaml
