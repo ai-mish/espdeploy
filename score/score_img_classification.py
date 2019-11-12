@@ -46,11 +46,11 @@ def score():
     strToSend = "i, n," + str(getUniqueId()) + "," + jpg_base64.decode() + "\n"
     pub.send(strToSend)
 
+    #check if count increases
     while (cal.size == count):
         time.sleep(0.05)
 
     request_time=(time.time() - start_time)*1000
-    #result = cal.tail(1).iloc[0]["I__label_"]
     result = cal.tail(1).iloc[0]
     label=result["I__label_"]
     p_label="P__label_"+label
@@ -60,7 +60,7 @@ def score():
         print("Confidence:     {0:.2f}".format(probability)+"%")
         print("Inference Time: {0:.2f}".format(request_time)+" ms")
     else:
-        print("Our system could not understand the Image.")
+        print("Unable to process the input image.")
     print()
 
 
