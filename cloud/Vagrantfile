@@ -16,7 +16,7 @@ tee "/etc/profile.d/ansible-env.sh" > "/dev/null" <<EOF
 # Ansible environment variables.
 sudo mkdir -p /var/log/sas/install
 sudo chown vagrant /var/log/sas/install
-export ANSIBLE_ROLES_PATH="/Users/Shared/MyData/Security/vagrant/playbooks/sas_viya_playbook:/Users/Shared/MyData/Security/vagrant/playbooks/sas_viya_playbook/roles:/Users/Shared/MyData/Security/vagrant/playbooks/sas_viya_playbook/internal"
+export ANSIBLE_ROLES_PATH="/vagrant/playbooks/sas_viya_playbook:/vagrant/playbooks/sas_viya_playbook/roles:/vagrant/playbooks/sas_viya_playbook/internal"
 export ANSIBLE_LOG_PATH=/var/log/sas/install/deployment.log
 EOF
 SCRIPT
@@ -25,7 +25,7 @@ VAGRANTFILE_API_VERSION = "2"
 NODE_COUNT = 4
 NODE_BASE_NAME = "esp19w25"
 DISK_SIZE_GB=80 #in GB
-DISK_LOCATION="/Users/Shared/MyData/Security/vagrant/virtualbox/disks"
+DISK_LOCATION="/vagrant/virtualbox/disks"
 DISK_FORMAT="vmdk"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
@@ -36,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.hostmanager.manage_guest = true
   config.hostmanager.ignore_private_ip = false
   config.hostmanager.include_offline = true
-  config.vm.box_url = "file:///Users/Shared/MyData/Security/vagrant/box/CentOS-7-x86_64-Vagrant-1902_01.VirtualBox.box"
+  config.vm.box_url = "file:///vagrant/box/CentOS-7-x86_64-Vagrant-1902_01.VirtualBox.box"
   config.vm.box = "centos/7"
 
 
@@ -48,9 +48,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     machine.hostmanager.aliases = "#{node_name}.#{NODE_BASE_NAME}.local #{node_name}"
 
     #shared filesystem
-    machine.vm.synced_folder "/Users/Shared/MyData/Security/vagrant/esp_19w25/git", "/shared/", type: "virtualbox"
+    machine.vm.synced_folder "/vagrant/esp_19w25/git", "/shared/", type: "virtualbox"
 
-    machine.vm.synced_folder "/Users/Shared/MyData/Security/vagrant/esp_19w25/github/espdeploy", "/app2", type: "virtualbox"
+    machine.vm.synced_folder "/vagrant/esp_19w25/github/espdeploy", "/app2", type: "virtualbox"
 
     machine.vm.provider "virtualbox" do |v|
         v.name = "esp server 19w25"
@@ -71,13 +71,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     machine.vm.provision "shell", inline: $script
 
     #COPY ansible files
-    machine.vm.provision "file", source: "/Users/Shared/MyData/Security/vagrant/esp_19w25/data/configuration/ansible.cfg", destination: "/Users/Shared/MyData/Security/vagrant/ansible.cfg"
-    machine.vm.provision "file", source: "/Users/Shared/MyData/Security/vagrant/esp_19w25/data/playbooks/pre-deployment.yml", destination: "/Users/Shared/MyData/Security/vagrant/playbooks/pre-deployment.yml"
+    machine.vm.provision "file", source: "/vagrant/esp_19w25/data/configuration/ansible.cfg", destination: "/vagrant/ansible.cfg"
+    machine.vm.provision "file", source: "/vagrant/esp_19w25/data/playbooks/pre-deployment.yml", destination: "/vagrant/playbooks/pre-deployment.yml"
 
     #COPY viya ark and install playbook
 
-    machine.vm.provision "file", source: "/Users/Shared/MyData/Security/vagrant/esp_19w25/data/playbooks", destination: "/Users/Shared/MyData/Security/vagrant/playbooks"
-    machine.vm.provision "file", source: "/Users/Shared/MyData/Security/vagrant/esp_19w25/data/configuration/inventory_external.ini", destination: "/Users/Shared/MyData/Security/vagrant/playbooks/sas_viya_playbook/inventory.ini"
+    machine.vm.provision "file", source: "/vagrant/esp_19w25/data/playbooks", destination: "/vagrant/playbooks"
+    machine.vm.provision "file", source: "/vagrant/esp_19w25/data/configuration/inventory_external.ini", destination: "/vagrant/playbooks/sas_viya_playbook/inventory.ini"
 
 
     #run pre-deployment.yml playbook
@@ -85,7 +85,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ansible.playbook       = "playbooks/pre-deployment.yml"
       ansible.verbose        = true
       ansible.limit          = "sas-all" # or only "nodes" group, etc.
-      ansible.inventory_path = "/Users/Shared/MyData/Security/vagrant/playbooks/sas_viya_playbook/inventory.ini"
+      ansible.inventory_path = "/vagrant/playbooks/sas_viya_playbook/inventory.ini"
     end
 
 
@@ -95,7 +95,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       ansible.playbook       = "playbooks/sas_viya_playbook/viya-ark/playbooks/pre-install-playbook/viya_pre_install_playbook.yml"
       ansible.verbose        = true
       #ansible.limit          = "sas-all" # or only "nodes" group, etc.
-      ansible.inventory_path = "/Users/Shared/MyData/Security/vagrant/playbooks/sas_viya_playbook/inventory.ini"
+      ansible.inventory_path = "/vagrant/playbooks/sas_viya_playbook/inventory.ini"
       ansible.raw_arguments  = ['-e', 'use_pause=false']
       ansible.skip_tags      = "skipmemfail,skipcoresfail,skipstoragefail,skipnicssfail,bandwidth,nicetohave"
     end
@@ -104,8 +104,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #provision path is required to use ansible.cfg from playbook instead of custom cfg
     #add host_key_checking = no tp ansible.cfg file
     machine.vm.provision "sas-viya-install", type: "ansible_local"  do |ansible|
-      ansible.playbook       = "/Users/Shared/MyData/Security/vagrant/playbooks/sas_viya_playbook/site.yml"
-      ansible.provisioning_path = "/Users/Shared/MyData/Security/vagrant/playbooks/sas_viya_playbook"
+      ansible.playbook       = "/vagrant/playbooks/sas_viya_playbook/site.yml"
+      ansible.provisioning_path = "/vagrant/playbooks/sas_viya_playbook"
       #ansible.limit          = "sas-all" # or only "nodes" group, etc.
       ansible.raw_arguments  = ['-vvvv']
       #sudo systemctl disable sas-viya-all-services
