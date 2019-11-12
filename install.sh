@@ -5,6 +5,8 @@
 curl -o ~/anaconda3.sh https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh
 #wget https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O ~/anaconda3.sh
 
+#remove
+rm -rf $HOME/anaconda3
 # Run the installer
 bash ~/anaconda3.sh -b -p $HOME/anaconda3
 
@@ -19,6 +21,8 @@ source $HOME/.bashrc
 # Install necessary Python packages
 #conda activate python3
 cd /app
+#delete if exist
+rm -rf python-esppy
 git clone https://github.com/sassoftware/python-esppy.git
 conda env create --file espdeploy/conda/conda.yaml
 
