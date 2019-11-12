@@ -20,8 +20,8 @@ sudo mkdir /app
 sudo chown $USER /app
 cd /app
 git clone https://github.com/sassoftware/python-esppy.git
-git clone https://github.com/sukmmi/iotdemo
-conda env create --file iotdemo/conda/iotdemo.yaml
+git clone https://github.com/sukmmi/espdeploy.git
+conda env create --file espdeploy/conda/conda.yaml
 
 #conda env create --file conda2.yaml
 #conda env update --file iotdemo/conda/iotdemo.yaml

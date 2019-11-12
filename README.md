@@ -10,5 +10,5 @@ sudo bash install.sh
 #Start ESP
 ```
 conda activate iotdemo
-bash iotdemo/esp/server/objectdetection-server.sh -a 30003 -p 30004 -m iotdemo/astore/fruit_classification/resnet50_caffe.astore -s /iotdemo/astore/fruit_classification/schema.txt -d
+bash iotdemo/esp/server/deploy.sh -a 30003 -p 30004 -m astore/resnet50_caffe.astore -s astore/schema.txt -d
 ```
