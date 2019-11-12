@@ -9,12 +9,11 @@ The aim of this project is to deploy Deep Neural Network Model and serve it usin
 2. Setup python and install this application using the following script
 
   ```
-  #Ensure curl exist
   sudo mkdir /app
   sudo chown $USER /app
   cd /app
   git clone https://github.com/sukmmi/espdeploy.git
-  sudo bash install.sh
+  bash install.sh
   ```
 3. Update image size as required by Model in server.py
 
