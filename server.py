@@ -68,7 +68,7 @@ def start_project():
 
 
     #adding resize window
-    resize = esp.calculate.ImageProcessing(schema=('id*:int64', '_image_:blob'), function="resize", width=416, height=416)
+    resize = esp.calculate.ImageProcessing(schema=('id*:int64', '_image_:blob'), function="resize", width=224, height=224)
     resize.set_inputs( imageInput='image:blob')
     resize.set_outputs( imageOutput='_image_:blob')
     detectionProject.windows['resized'] = resize
