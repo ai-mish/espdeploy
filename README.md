@@ -12,6 +12,7 @@ The aim of this project is to deploy Deep Neural Network Model and serve it usin
   #Ensure curl exist
   sudo mkdir /app
   sudo chown $USER /app
+  cd /app
   git clone https://github.com/sukmmi/espdeploy.git
   sudo bash install.sh
   ```
