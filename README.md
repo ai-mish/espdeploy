@@ -14,6 +14,8 @@ The aim of this project is to deploy Deep Neural Network Model and serve it usin
   cd /app
   git clone https://github.com/sukmmi/espdeploy.git
   bash espdeploy/install.sh
+  . ~/.bashrc
+  conda activate iotdemo
   ```
 3. Update image size as required by Model in server.py
 

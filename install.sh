@@ -25,7 +25,7 @@ conda env create --file espdeploy/conda/conda.yaml
 
 #conda env create --file conda2.yaml
 #conda env update --file iotdemo/conda/iotdemo.yaml
-conda activate iotdemo
+#conda activate iotdemo
 echo "conda activate iotdemo" >> ~/.bashrc
 
 echo "Installation completed - App files copied into /app"
